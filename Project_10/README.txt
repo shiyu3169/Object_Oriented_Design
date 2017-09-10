@@ -1,0 +1,1 @@
+TO run the console, just put the method main(commond out) back and Run it(run configuration with the class Console), you can change the file name in main : c.ts.initCinema("cinema.txt"); to initia different file.

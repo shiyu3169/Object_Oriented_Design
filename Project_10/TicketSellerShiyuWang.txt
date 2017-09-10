@@ -1,0 +1,207 @@
+Shiyu Wang
+shiyu@ccs.neu.edu
+
+1. Prblem Statement
+2. Use Cases
+3. requirements
+4. Domains
+5. Constraints
+6. Data model
+7. UML diagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Movie ticket sales system.
+
+Problem statement:
+------------------
+
+Your goal is to design a Java application that will manage the sales
+of movie tickets in a cinema complex. The complex consists of several 
+theaters that show movies at different times. The same movie may be showing
+in more than one theater. 
+
+The ticket prices may be different for children, adults, and seniors. There
+may also be a different price for the matinees. 
+
+The cinema complex wants to be able to analyze its sales by various
+criteria - tickets sold to seniors, tickets for a specific movie,
+matinee ticket sales, etc.
+
+Some cinema complexes may also have luxury theaters with higher fixed 
+price for all patrons.
+
+
+Use Cases
+-----------------------------------------
+UC1 Select the movie
+UC2 Print out the information  
+UC3 Choose specific time and theater
+UC4 Purchase the movie
+(it gets updated cause, it doesn't make sense to choose a time, choosing movie is better.)
+
+Use Case1
+-----------------------------------------
+1. Computer lists up movies' names on the screen 
+
+2. User choose one of them, which he/she wants to watch.
+
+Use Case2
+-----------------------------------------
+1. System prints out all the time and theater(number of seats available) of the chosen movie
+ 
+Use Case3
+------------------------------------------
+1. User can select which time and theater he wants to pick. 
+
+Use Case4
+-------------------------------------------
+1. After user picks the movie with the time and theater he wants, 
+the system prints out 3 different kinds of tickets with different
+price, including children, adults, and seniors. 
+
+2. User choose the corresponding ticket and purchase the tickets 
+after system shows the confirm information.
+
+
+Requirements
+-------------
+The system should list the movie's with a 
+corresponding number for picking.
+
+The system shall allow user to input the number for movies.
+
+The system should print different time and theaters for the chosen movie
+
+the theater should coming with number of seats available
+
+Users should be allowed to choose printed movie with time and theater
+
+After user picks, the system should show different price for children, 
+adults and seniors.
+
+User shall be allowed to choose type of tickets and see the confirm page 
+and purchase tickets.
+
+Confirm page should include all the information including movie name, time, 
+theater, seats available, ticket's type and price.
+
+Manager should be allowed to initialize and update the matches of movie, 
+time and theater 
+
+
+Domains:
+--------
+
+User interface: Input module
+                Reporting the results of selections
+
+Manager interface(in TicketSeller): Input module for providing initial data
+                   Input for updating the information
+        
+Data manager: module that keeps track of the data, verifies its integrity,
+              processes the updates
+
+
+
+Relations:
+----------
+
+User interface: interacts with the user, provides selection of movie or time,
+                interacts with the data manager to get the selection of movie or time,
+                reports to the data manager the user's selection of the movie or time,
+                receives from the data manager the information about time, price and movie.
+
+Manager interface: Allows the manager to initialize and to modify the information
+                   about the movie, time and theater. Interacts with data manager
+                   notifying it of any changes in the cinema.
+
+Data manager: Handles all information about the cinema used for providing informations of movies,
+              including calculate ending time. Is responsible for integrity of data.
+
+
+
+Constraints:
+------------
+The cinema should allow for at least 3 theaters within the complex,
+at least 3 ticket price categories and 3 time slots per theater,
+at l east 5 different movies shown.
+
+
+Module dependency diagram:
+--------------------------
+
+  +----------------+        +--------------+        +-------------------+
+  | User Interface |<------>| Data manager |<------>| Manager Interface |
+  +----------------+        +--------------+        +-------------------+
+
+
+Data model:
+-----------
+Cinema: the collection of movies
+
+User: the user interface
+
+movies: the list of providing movies
+
+time: the time slots given as 3 or 4 digits int.
+
+name: the name of a movie given by string
+ 
+theater: the location and its capacity of the movie shown in the cinema. 
+
+Each movie has at least one time with one theater and 3 price categories.
+
+
+
+UML diagram:
+------------
+                                                                                                                   +-----------------------------+
++----------------------------------------+                      +-----------------------------------+              |Console                      |
+| Cinema                                 |                      | TicketSales                       |-----------+  +-----------------------------+
++----------------------------------------+                      +-----------------------------------+           +--|TicketSales ts               |
+| ArrayList<Movie> movies                |-----------+----------| void getTheaters(String)          |              +-----------------------------+
+| ArrayList<Prices> prices               |           |          | String logReport()                |              |void welcome()               |
++----------------------------------------+           |          | void getNames(String)             |              |void moviePrint()            |
+                                                     |          | void getPrices(String)            |              |void tPrint(int)             |   
+                                                     |          | void initCinema(String)           |              |void purchase()              |
+                                                     |          | void processOrders(String)        |              |void purchase2()             |
+                                                     |          | String reportSales()              |              |void purchase3()             |
+                                                     |          | String managerReport()            |              |void change()                |
+                                                     |          | void manup()                      |              |void main(string[])          |
+                                                     |          +-----------------------------------+              |void confirm()               |
+                                                     |                                                             +-----------------------------+
+                                                     |
+                                                     |
+                                                     v
+                                          +---------------------+
+                                          | Movie               |
+                                          +---------------------+
+                                          | String name         |
+                                          | int    time         |                       +-------------------+
+                                          | Theater theater     |-----------------------| Theater           |
+                                          |                     |                       +-------------------+
+                                          +---------------------+                       |String name        |
+                                                                                        |int    seat        |
+                                                                                        +-------------------+
+
+
